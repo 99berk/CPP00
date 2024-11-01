@@ -1,41 +1,73 @@
 #include "Contact.hpp"
+#include <iostream>
+#include <string>
 
 Contact::Contact(void)
 {
-    this->_fname = "NULL";
-    this->_lname = "NULL";
-    this->_nickname = "NULL";
-    this->_phoneNumber = "NULL";
-    this->_secret = "NULL";
+    this->_fname = "";
+    this->_lname = "";
+    this->_nickname = "";
+    this->_phoneNumber = "";
+    this->_secret = "";
 }
 
 Contact::~Contact()
 {
 }
 
-void Contact::setFname(std::string fname)
+bool Contact::setFname(std::string fname)
 {
+    if (fname.empty())
+    {
+        std::cout << "first name empty!" << std::endl;
+        return (false);
+    }
     this->_fname = fname;
+    return(true);
 }
 
-void Contact::setLname(std::string lname)
+bool Contact::setLname(std::string lname)
 {
+    if (lname.empty())
+    {
+        std::cout << "last name empty!" << std::endl;
+        return (false);
+    }
     this->_lname = lname;
+    return (true);
 }
 
-void Contact::setNickname(std::string nickname)
+bool Contact::setNickname(std::string nickname)
 {
+    if (nickname.empty())
+    {
+        std::cout << "nick name empty!" << std::endl;
+        return (false);
+    }
     this->_nickname = nickname;
+    return (true);
 }
 
-void Contact::setPhonenumber(std::string phonenumber)
+bool Contact::setPhonenumber(std::string phonenumber)
 {
+    if (phonenumber.empty())
+    {
+        std::cout << "Phone number empty!" << std::endl;
+        return (false);
+    }
     this->_phoneNumber = phonenumber;
+    return (true);
 }
 
-void Contact::setSecret(std::string secret)
+bool Contact::setSecret(std::string secret)
 {
+    if (secret.empty())
+    {
+        std::cout << "Darkest secret empty!" << std::endl;
+        return (false);
+    }
     this->_secret = secret;
+    return (true);
 }
 
 std::string Contact::getFname(void)
@@ -43,22 +75,22 @@ std::string Contact::getFname(void)
     return (this->_fname);
 }
 
-std::string Contact::setLname(void)
+std::string Contact::getLname(void)
 {
     return (this->_lname);
 }
 
-std::string Contact::setNickname(void)
+std::string Contact::getNickname(void)
 {
     return (this->_nickname);
 }
 
-std::string Contact::setPhonenumber(void)
+std::string Contact::getPhonenumber(void)
 {
     return (this->_phoneNumber);
 }
 
-std::string Contact::setSecret(void)
+std::string Contact::getSecret(void)
 {
     return (this->_secret);
 }

@@ -13,17 +13,17 @@ class Contact
         std::string _secret;
     public:
         Contact(void);
-        ~Contact();
-        void setFname(std::string fname);
-        void setLname(std::string lname);
-        void setNickname(std::string nickname);
-        void setPhonenumber(std::string phonenumber);
-        void setSecret(std::string secret);
+        ~Contact(void);
+        bool setFname(std::string fname);
+        bool setLname(std::string lname);
+        bool setNickname(std::string nickname);
+        bool setPhonenumber(std::string phonenumber);
+        bool setSecret(std::string secret);
         std::string getFname(void);
-        std::string setLname(void);
-        std::string setNickname(void);
-        std::string setPhonenumber(void);
-        std::string setSecret(void);
+        std::string getLname(void);
+        std::string getNickname(void);
+        std::string getPhonenumber(void);
+        std::string getSecret(void);
 };
 
 #endif
