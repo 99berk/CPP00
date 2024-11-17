@@ -17,7 +17,7 @@ class PhoneBook
         void search(void);
         std::string addSpaces(int n);
         void updateInput(std::string str);
-        void print(int index);
+        void print(const int index);
 };
 
 #endif

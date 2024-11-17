@@ -13,8 +13,8 @@ PhoneBook::~PhoneBook()
 
 void PhoneBook::clear(void)
 {
-    std::cout << "\033[2J";
-	std::cout << "\033[H";
+    std::cout << "\e[2J";
+	std::cout << "\e[H";
     std::cout << "---------------------------------------------\n";
     std::cout << "|            -P-H-O-N-E-B-O-O-K-            |\n";
     std::cout << "---------------------------------------------\n";
@@ -90,8 +90,17 @@ void PhoneBook::updateInput(std::string str)
     int	size;
 	int	i;
 
-	size = str.size();
-	if (size < 10)
+	size = str.length();
+    i = -1;
+	while (str[++i])
+    {
+        if ((unsigned char)str[i] >= 128 && (unsigned char)str[i] <= 255)
+        {
+            size--;
+            i++;
+        }
+    }
+    if (size < 10)
 		std::cout << this->addSpaces(10 - size) << str;
 	else
 	{
@@ -102,7 +111,7 @@ void PhoneBook::updateInput(std::string str)
 	}
 }
 
-void	PhoneBook::print(int index)
+void	PhoneBook::print(const int index)
 {
 	this->clear();
 	std::cout << "First name    : ";
@@ -129,9 +138,9 @@ void PhoneBook::search()
         return;
     }
     std::cout << "|     Index|      Name|  Lastname|  Nickname|" << std::endl;
-	std::cout << "|-+-+-+-+-+|-+-+-+-+-+|-+-+-+-+-+|-+-+-+-+-+|" << std::endl;
+	std::cout << "|----------|----------|----------|----------|" << std::endl;
     i = -1;
-    while (++i != 8 && this->contact[i].getFname() != "" && this->contact[i].getFname() != "NULL")
+    while (++i != 8 && this->contact[i].getFname() != "")
     {
         std::cout << "|" << this->addSpaces(9) << i + 1 << "|";
         this->updateInput(this->contact[i].getFname());
@@ -141,7 +150,7 @@ void PhoneBook::search()
 		this->updateInput(this->contact[i].getNickname());
 		std::cout << "|" << std::endl;
         if (i + 1 != 8 && this->contact[i + 1].getFname() != "")
-            std::cout << "|~~~~~~~~~~|~~~~~~~~~~|~~~~~~~~~~|~~~~~~~~~~|" << std::endl;
+            std::cout << "|----------|----------|----------|----------|" << std::endl;
     }
     std::cout << "---------------------------------------------" << std::endl;
 	input = "";
@@ -151,8 +160,8 @@ void PhoneBook::search()
 		std::cout << "Select index: ";
 		std::getline(std::cin, input);
 		if (input.size() == 1 && input[0] >= '1' && input[0] <= '8'
-			&& this->contact[input[0] - 1 - '0'].getFname() != "")
-				this->print(input[0] - 1 - '0');
+			&& this->contact[input[0] - '0' - 1].getFname() != "")
+				this->print(input[0] - '0' - 1);
 		else
 		{
 			input = "";

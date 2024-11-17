@@ -1,7 +1,7 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
-#include <string>
+#include <iostream>
 
 class Contact
 {
@@ -14,16 +14,16 @@ class Contact
     public:
         Contact(void);
         ~Contact(void);
-        bool setFname(std::string fname);
-        bool setLname(std::string lname);
-        bool setNickname(std::string nickname);
-        bool setPhonenumber(std::string phonenumber);
-        bool setSecret(std::string secret);
-        std::string getFname(void);
-        std::string getLname(void);
-        std::string getNickname(void);
-        std::string getPhonenumber(void);
-        std::string getSecret(void);
+        bool setFname(const std::string fname);
+        bool setLname(const std::string lname);
+        bool setNickname(const std::string nickname);
+        bool setPhonenumber(const std::string phonenumber);
+        bool setSecret(const std::string secret);
+        std::string getFname(void) const;
+        std::string getLname(void) const;
+        std::string getNickname(void) const;
+        std::string getPhonenumber(void) const;
+        std::string getSecret(void) const;
 };
 
 #endif
